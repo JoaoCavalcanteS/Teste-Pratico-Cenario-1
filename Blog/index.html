@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog</title>
+</head>
+<body>
+	<h1>Listagem de posts</h1>
+
+<ul id="listagemPosts">
+
+</ul>
+
+	<h1>Listagem de comentários de um post</h1>
+
+	<form>
+	<label for="post-id">Digite o ID do post:</label>
+		<input type="text" id="post-id" name="post-id">
+		<button type="button" onclick="buscarComentarios()">Buscar comentários</button>
+	</form>
+
+<ul id="listagemComentarios">
+
+</ul>
+
+	<h1>Listagem de usuários</h1>
+
+<ul id="listagemUsuarios">
+
+</ul>
+
+	<h1>Detalhes de um usuário</h1>
+
+	<form>
+	<label for="user-id">Digite o ID do usuário:</label>
+		<input type="text" id="user-id" name="user-id">
+		<button type="button" onclick="buscarUsuario()">Buscar usuário</button>
+	</form>
+
+<div id="detalhesUsuario">
+
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
