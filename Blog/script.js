@@ -7,14 +7,12 @@ function buscarPosts() {
     fetch(urlPosts)
     .then(async response => {
         const data = await response.json();//Resultado Assincrono para esperar o resultado completo, para dar o resultado já pronto
+        const listaPosts = document.getElementById('lista');
 
-        const listaPosts = document.getElementById('listagemPosts');
-
-        idposts = [];
         for (let i = 0; i < data.length; i++) {
             let post = data[i];
-            let itemPost = document.createElement('li');
-            itemPost.innerText = post.title;
+            let itemPost = document.createElement('div');
+            itemPost.innerText = post.id+"-"+post.title;
             listaPosts.appendChild(itemPost);
             idposts.push(post.id);
         }
@@ -97,18 +95,22 @@ function buscarUsuario() {
             const enderecoUsuario = document.createElement('p');
             enderecoUsuario.innerText = `Endereço: ${data.address.street}, ${data.address.suite}, ${data.address.city}`;
             detalhesUsuario.appendChild(enderecoUsuario);
+
         } else if (response.status === 404) {
             const nomeUsuario = document.createElement('h2');
             nomeUsuario.innerText = "Este usuário não existe";
             detalhesUsuario.appendChild(nomeUsuario);
+
         } else {
             const nomeUsuario = document.createElement('h2');
             nomeUsuario.innerText = "Erro " + response.status;
             detalhesUsuario.appendChild(nomeUsuario);
+
         }
     }).catch(erro => {
         const detalhesUsuario = document.getElementById('detalhesUsuario');
         detalhesUsuario.innerHTML = '';
+
         const nomeUsuario = document.createElement('h2');
         nomeUsuario.innerText = "Erro: " + erro.message;
         detalhesUsuario.appendChild(nomeUsuario);
@@ -120,3 +122,4 @@ window.onload = function() {
     buscarPosts();
     buscarUsuarios();
 };
+//How
