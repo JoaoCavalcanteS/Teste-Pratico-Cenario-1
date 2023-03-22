@@ -15,7 +15,7 @@ function buscarPosts() {
             listaPosts.appendChild(itemPost);
         }
 
-    });
+    }).catch(erro => alert(erro));
 
 }
 
@@ -25,6 +25,12 @@ function buscarComentarios() {
     let urlComentarios = `https://jsonplaceholder.typicode.com/posts/${postId}/comments`;
 
     fetch(urlComentarios)
+    .then(response => {
+        if (response.status !== 200) {
+            alert("Não existe");
+        }
+        return response;
+    })
     .then(response => response.json())
     .then(data => {
 
@@ -38,7 +44,7 @@ function buscarComentarios() {
             listaComentarios.appendChild(itemComentario);
         }
 
-    });
+    }).catch(erro => alert(erro));
 
 }
 
