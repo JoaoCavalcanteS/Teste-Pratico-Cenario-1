@@ -11,7 +11,7 @@ function buscarPosts() {
 
         for (let i = 0; i < data.length; i++) {
             let post = data[i];
-            let itemPost = document.createElement('option');
+            let itemPost = document.createElement('div');
             itemPost.innerText = post.id + "-" + post.title;
             itemPost.addEventListener('click', ()=>{ //function buscar comentários
 
@@ -21,6 +21,7 @@ function buscarPosts() {
                 if (!idposts.includes(parseInt(postId))) {
                     const listaComentarios = document.getElementById('listagemComentarios');
                     listaComentarios.innerHTML = 'Este comentário não existe';
+                    
                 } else {
                     const urlComentarios = `https://jsonplaceholder.typicode.com/posts/${postId}/comments`;
                     fetch(urlComentarios)
@@ -32,8 +33,8 @@ function buscarPosts() {
             
                         //for OF
                         for (const comentario of data) {
-                            const itemComentario = document.createElement('li');
-                            itemComentario.innerText = comentario.body;
+                            const itemComentario = document.createElement('div');
+                            itemComentario.innerText = "Comentário: " + comentario.body;
                             listaComentarios.appendChild(itemComentario);
                         }
             
