@@ -11,8 +11,38 @@ function buscarPosts() {
 
         for (let i = 0; i < data.length; i++) {
             let post = data[i];
-            let itemPost = document.createElement('div');
-            itemPost.innerText = post.id+"-"+post.title;
+            let itemPost = document.createElement('option');
+            itemPost.innerText = post.id + "-" + post.title;
+            itemPost.addEventListener('click', ()=>{ //function buscar comentários
+
+                const postId = post.id;
+
+                //se o id de todos os posts nao contem isso, entao recebe uma mensagem de erro
+                if (!idposts.includes(parseInt(postId))) {
+                    const listaComentarios = document.getElementById('listagemComentarios');
+                    listaComentarios.innerHTML = 'Este comentário não existe';
+                } else {
+                    const urlComentarios = `https://jsonplaceholder.typicode.com/posts/${postId}/comments`;
+                    fetch(urlComentarios)
+                    .then(async response => {
+                        const data = await response.json();
+            
+                        const listaComentarios = document.getElementById('listagemComentarios');
+                        listaComentarios.innerHTML = '';
+            
+                        //for OF
+                        for (const comentario of data) {
+                            const itemComentario = document.createElement('li');
+                            itemComentario.innerText = comentario.body;
+                            listaComentarios.appendChild(itemComentario);
+                        }
+            
+                    }).catch(erro => {
+                        let listaComentarios = document.getElementById('listagemComentarios');
+                        listaComentarios.innerHTML = "Erro: " + erro.message;
+                    });
+                }
+            })
             listaPosts.appendChild(itemPost);
             idposts.push(post.id);
         }
@@ -21,36 +51,6 @@ function buscarPosts() {
 
 }
 
-function buscarComentarios() {
-
-    const postId = document.getElementById('post-id').value;
-
-    //se o id de todos os posts nao contem isso, entao recebe uma mensagem de erro
-    if (!idposts.includes(parseInt(postId))) {
-        const listaComentarios = document.getElementById('listagemComentarios');
-        listaComentarios.innerHTML = 'Este comentário não existe';
-    } else {
-        const urlComentarios = `https://jsonplaceholder.typicode.com/posts/${postId}/comments`;
-        fetch(urlComentarios)
-        .then(async response => {
-            const data = await response.json();
-
-            const listaComentarios = document.getElementById('listagemComentarios');
-            listaComentarios.innerHTML = '';
-
-            //for OF
-            for (const comentario of data) {
-                const itemComentario = document.createElement('li');
-                itemComentario.innerText = comentario.body;
-                listaComentarios.appendChild(itemComentario);
-            }
-
-        }).catch(erro => {
-            let listaComentarios = document.getElementById('listagemComentarios');
-            listaComentarios.innerHTML = "Erro: " + erro.message;
-        });
-    }
-}
 
 function buscarUsuarios() {
 
