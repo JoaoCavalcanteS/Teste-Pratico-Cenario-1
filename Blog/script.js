@@ -34,7 +34,7 @@ function buscarPosts() {
                         //for OF
                         for (const comentario of data) {
                             const itemComentario = document.createElement('div');
-                            itemComentario.innerText = "Comentário: " + comentario.body;
+                            itemComentario.innerText = "Comentário: " + comentario.body+".";
                             listaComentarios.appendChild(itemComentario);
                         }
             
