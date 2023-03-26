@@ -1,5 +1,6 @@
 let idposts = [];
 
+//Função que carrega toda a lista, trazendo todos os títulos.
 function buscarPosts() {
 
     const urlPosts = 'https://jsonplaceholder.typicode.com/posts';
@@ -12,9 +13,11 @@ function buscarPosts() {
         for (let i = 0; i < data.length; i++) {
             let post = data[i];
             let itemPost = document.createElement('div');
+            itemPost.className =  'list-group-item list-group-item-action';
             itemPost.innerText = post.id + "-" + post.title;
-            itemPost.addEventListener('click', ()=>{ //function buscar comentários
-
+            itemPost.addEventListener('click', ()=>{ 
+                
+                //function buscar comentários
                 const postId = post.id;
 
                 //se o id de todos os posts nao contem isso, entao recebe uma mensagem de erro
@@ -52,7 +55,7 @@ function buscarPosts() {
 
 }
 
-
+//Função que exibe a lista de usuários
 function buscarUsuarios() {
 
     const urlUsuarios = 'https://jsonplaceholder.typicode.com/users';
@@ -73,6 +76,7 @@ function buscarUsuarios() {
 
 }
 
+//Função que retorna a pesquisa pelo ID do usuario.
 function buscarUsuario() {
 
     const userId = document.getElementById('user-id').value;
@@ -123,4 +127,3 @@ window.onload = function() {
     buscarPosts();
     buscarUsuarios();
 };
-//How

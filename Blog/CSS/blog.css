@@ -1,0 +1,23 @@
+main{
+    display: flex;
+    height: 60em;
+    
+}
+#titulos{
+    overflow: hidden;
+    overflow-y: scroll;
+    width: 99%;
+    height: 70%;
+    display:block;
+    
+}
+footer{
+    padding-left: 2%;
+}
+nav{
+    justify-content: center;
+    background-color: #79c0f3;
+}
+.t1{
+    margin-left: 6%;
+}
